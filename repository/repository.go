@@ -8,9 +8,13 @@ import (
 )
 
 type Repository struct {
+	mongoClient *mongo.Client
+	ConversationsBuilder
 }
 
-func CreateRepository(ctx context.Context, mongoClient *mongo.Client, logger *zap.Logger) (*Repository, error) {
+func New(ctx context.Context, mongoClient *mongo.Client, logger *zap.Logger) (*Repository, error) {
 	logger.Info("creating repository...")
-	return &Repository{}, nil
+	return &Repository{
+		mongoClient: mongoClient,
+	}, nil
 }
