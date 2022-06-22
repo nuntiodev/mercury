@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 	"github.com/nuntiodev/mercury/handler"
@@ -32,7 +31,7 @@ func initializeServer() error {
 	var ok bool
 	port, ok = os.LookupEnv("PORT")
 	if !ok || port == "" {
-		return errors.New("missing required PORT")
+		port = "9000"
 	}
 	return nil
 }
@@ -50,7 +49,7 @@ func New(ctx context.Context, logger *zap.Logger) (Server, error) {
 		return nil, err
 	}
 	// create repository
-	myRepository, err := repository.CreateRepository(ctx, mongoClient, logger)
+	myRepository, err := repository.New(ctx, mongoClient, logger)
 	if err != nil {
 		return nil, err
 	}
