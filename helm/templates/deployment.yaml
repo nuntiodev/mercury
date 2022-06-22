@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Release.Name }}-template
+    version: v1
+  name: {{ .Release.Name }}-template
+  namespace: {{ .Release.Namespace | default "default" }}
+spec:
+  {{- if not .Values.deployment.autoscaling.enabled }}
+  replicas: {{ .Values.deployment.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-template
+      version: v1
+  template:
+    metadata:
+      name: {{ .Release.Name }}-template
+      labels:
+        app: {{ .Release.Name }}-template
+        version: v1
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-template
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          {{- range .Values.deployment.ports}}
+          - containerPort: {{ . }}
+            name: "http"
+          {{- end }}
+          env:
+          {{- range $k, $v := .Values.deployment.env }}
+          - name: {{ $v.name }}
+            value: "{{ $v.value }}"
+          {{- end }}
+          envFrom:
+            {{- range $secret := .Values.deployment.secretEnv }}
+            - secretRef:
+                name: {{ $secret }}
+            {{- end }}

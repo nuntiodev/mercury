@@ -1,0 +1,39 @@
+image:
+  repository: softcorpdev/nuntio-dashboard-service
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: main
+deployment:
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+  ports:
+    - 1013
+  env:
+    - name: MONGO_DB_NAME
+      value: dashboard
+    - name: MONGO_ORG_COLLECTION
+      value: organizations
+    - name: DASHBOARD_PORT
+      value: 1013
+    - name: HYDRA_PUBLIC_URL
+      value: https://public.hydra.softcorp.io
+    - name: USER_SERVICE_ADMIN_ADDR
+      value: softcorp-connect-user-admin.softcorp-connect.svc.cluster.local:9000
+    - name: AUTH_SERVICE_ADMIN_ADDR
+      value: softcorp-connect-auth-admin.softcorp-connect.svc.cluster.local:9000
+    - name: DASHBOARD_REDIRECT_ADDR
+      value: https://test.dashboard.nuntio.io/callback.html
+    - name: MAILJET_PUBLIC_KEY
+      value: 8066d04751558e6c704216d143c03e8b
+    - name: MAILJEY_PRIVATE_KEY
+      value: 08d36a244725dcd120a94ccbd1999504
+  secretEnv:
+    - dashboard-secret
+dashboardClusterIp:
+  port: 1013
+  targetPort: 1013
