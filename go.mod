@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/joho/godotenv v1.4.0
-	github.com/nuntiodev/mercury-proto v0.0.2
+	github.com/nuntiodev/mercury-proto v0.0.3
 	github.com/nuntiodev/x v0.2.39
 	go.mongodb.org/mongo-driver v1.9.0
 	go.uber.org/zap v1.21.0
