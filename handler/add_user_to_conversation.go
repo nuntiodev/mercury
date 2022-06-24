@@ -7,7 +7,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (h *defaultHandler) Send(ctx context.Context, req *go_mercury.MercuryRequest) (*go_mercury.MercuryResponse, error) {
+func (h *defaultHandler) AddUserToConversation(ctx context.Context, req *go_mercury.MercuryRequest) (*go_mercury.MercuryResponse, error) {
 	//TODO: Implement
 	return nil, status.Error(codes.Unimplemented, "unimplemented")
 }

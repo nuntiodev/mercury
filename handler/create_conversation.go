@@ -3,7 +3,6 @@ package handler
 import (
 	"context"
 	"github.com/nuntiodev/hera-proto/go_hera"
-	"github.com/nuntiodev/hera/models"
 	"github.com/nuntiodev/hera/repository/user_repository"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 	"github.com/nuntiodev/mercury/repository/conversations"
@@ -18,7 +17,6 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 	var (
 		conversationRepository conversations.Conversations
 		userRepository         user_repository.UserRepository
-		user                   *models.User
 		conversation           *go_mercury.Conversation
 		errGroup               = errgroup.Group{}
 	)
@@ -28,7 +26,7 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 		if err != nil {
 			return err
 		}
-		user, err = userRepository.Get(ctx, &go_hera.User{Id: req.Conversation.AdminId})
+		_, err = userRepository.Get(ctx, &go_hera.User{Id: req.Conversation.AdminId})
 		if err != nil {
 			return err
 		}
