@@ -10,6 +10,8 @@ import (
 var (
 	ConversationIsNil     = errors.New("conversation is nil")
 	ConversationIdIsEmpty = errors.New("conversation id is empty")
+	UserIsNil             = errors.New("user is nil")
+	UserIdIsEmpty         = errors.New("user id is empty")
 )
 
 type Conversations interface {
@@ -18,6 +20,7 @@ type Conversations interface {
 	Get(ctx context.Context, conversation *go_mercury.Conversation) (*go_mercury.Conversation, error)
 	List(ctx context.Context, userId string, from, to int) ([]*go_mercury.Conversation, error)
 	Delete(ctx context.Context, conversation *go_mercury.Conversation) error
+	AddUserToConversation(ctx context.Context, conversation *go_mercury.Conversation, user *go_mercury.User) error
 }
 
 type mongoConversations struct {

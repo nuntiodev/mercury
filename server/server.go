@@ -23,7 +23,7 @@ type Server interface {
 }
 
 type defaultServer struct {
-	handler handler.Handler
+	handler go_mercury.ServiceServer
 	logger  *zap.Logger
 }
 

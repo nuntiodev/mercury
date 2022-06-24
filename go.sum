@@ -81,6 +81,8 @@ github.com/nuntiodev/mercury-proto v0.0.3 h1:TjYsNhsOHqGip51HXW/29mqo+RDREzntQN1
 github.com/nuntiodev/mercury-proto v0.0.3/go.mod h1:4orYZrKGSFZgb4ppoPTf5/lqLt17yCtuOdV0cjBwczQ=
 github.com/nuntiodev/mercury-proto v0.0.4-0.20220624142907-d7460e387e9b h1:y1OZpN1tlUjWdhdQueqvtpDI1x8pCq0JS0vsJCHNmbA=
 github.com/nuntiodev/mercury-proto v0.0.4-0.20220624142907-d7460e387e9b/go.mod h1:4orYZrKGSFZgb4ppoPTf5/lqLt17yCtuOdV0cjBwczQ=
+github.com/nuntiodev/mercury-proto v0.0.4-0.20220624144223-3bd7777e2346 h1:MGTffK7pa4ikJ+b8gBcxb8punXQeIQlKDmdIgve9uFg=
+github.com/nuntiodev/mercury-proto v0.0.4-0.20220624144223-3bd7777e2346/go.mod h1:4orYZrKGSFZgb4ppoPTf5/lqLt17yCtuOdV0cjBwczQ=
 github.com/nuntiodev/x v0.2.40 h1:oWDf+lqdYMURWrvYAR6IFStm7yb3uA5VpDHguuIaYxs=
 github.com/nuntiodev/x v0.2.40/go.mod h1:fBPW5cAn55VpDsOcz6Fn7M7Vj7cIDrKFBLCIgW8vpEA=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

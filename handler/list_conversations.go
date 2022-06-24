@@ -6,7 +6,7 @@ import (
 	"github.com/nuntiodev/mercury/repository/conversations"
 )
 
-func (h *defaultHandler) GetRecentConversations(ctx context.Context, req *go_mercury.MercuryRequest) (*go_mercury.MercuryResponse, error) {
+func (h *defaultHandler) ListConversations(ctx context.Context, req *go_mercury.MercuryRequest) (*go_mercury.MercuryResponse, error) {
 	var (
 		conversationRepository conversations.Conversations
 		list                   []*go_mercury.Conversation
@@ -21,7 +21,7 @@ func (h *defaultHandler) GetRecentConversations(ctx context.Context, req *go_mer
 	if err != nil {
 		return nil, err
 	}
-	list, err = conversationRepository.List(ctx, req.User.Id, req.From, req.To)
+	list, err = conversationRepository.List(ctx, req.User.Id, int(req.From), int(req.To))
 	if err != nil {
 		return nil, err
 	}
