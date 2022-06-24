@@ -4,14 +4,15 @@ go 1.18
 
 require (
 	github.com/joho/godotenv v1.4.0
-	github.com/nuntiodev/hera v0.0.35
-	github.com/nuntiodev/hera-proto v0.2.83
+	github.com/nuntiodev/hera v0.0.36
+	github.com/nuntiodev/hera-proto v0.2.84
 	github.com/nuntiodev/mercury-proto v0.0.3
 	github.com/nuntiodev/x v0.2.40
 	go.mongodb.org/mongo-driver v1.9.1
 	go.uber.org/zap v1.21.0
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	google.golang.org/grpc v1.47.0
+	k8s.io/utils v0.0.0-20211116205334-6203023598ed
 )
 
 require (
