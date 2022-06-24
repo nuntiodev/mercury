@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 
+	"github.com/nuntiodev/hera/repository"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.uber.org/zap"
 )
@@ -10,6 +11,7 @@ import (
 type Repository struct {
 	mongoClient *mongo.Client
 	ConversationsBuilder
+	repository.UserRepositoryBuilder
 }
 
 func New(ctx context.Context, mongoClient *mongo.Client, logger *zap.Logger) (*Repository, error) {
