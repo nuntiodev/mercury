@@ -3,10 +3,12 @@ package handler
 import (
 	"context"
 	"github.com/nuntiodev/hera-proto/go_hera"
+	"github.com/nuntiodev/hera/models"
 	"github.com/nuntiodev/hera/repository/user_repository"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 	"github.com/nuntiodev/mercury/repository/conversations"
 	"golang.org/x/sync/errgroup"
+	"k8s.io/utils/strings/slices"
 )
 
 /*
@@ -16,6 +18,7 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 	var (
 		c            conversations.Conversations
 		u            user_repository.UserRepository
+		user         *models.User
 		conversation *go_mercury.Conversation
 		errGroup     = errgroup.Group{}
 	)
@@ -25,10 +28,31 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 		if err != nil {
 			return err
 		}
-		u.Get(ctx, &go_hera.User{Id: req.User.GetId(), Email: req.User.Email, Username:})
+		user, err = u.Get(ctx, &go_hera.User{Id: req.Conversation.AdminId})
+		if err != nil {
+			return err
+		}
 		return nil
 	})
-	// check users in conversation exists
+	// validate that all users in room exists
+	errGroup.Go(func() error {
+		var users []*go_hera.User
+		for _, userId := range req.Conversation.Users {
+			users = append(users, &go_hera.User{Id: userId})
+		}
+		users, err = u.GetMany(ctx, users)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err = errGroup.Wait(); err != nil {
+		return nil, err
+	}
+	// add admin to room if he has not yet been added
+	if !slices.Contains(req.Conversation.Users, req.Conversation.AdminId) {
+		req.Conversation.Users = append(req.Conversation.Users, req.Conversation.AdminId)
+	}
 	c, err = h.repository.ConversationsBuilder.SetNamespace(req.Namespace).Build(ctx)
 	if err != nil {
 		return nil, err
