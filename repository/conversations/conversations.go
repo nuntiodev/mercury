@@ -8,7 +8,8 @@ import (
 )
 
 var (
-	ConversationIsNil = errors.New("conversation is nil")
+	ConversationIsNil     = errors.New("conversation is nil")
+	ConversationIdIsEmpty = errors.New("conversation id is empty")
 )
 
 type Conversations interface {

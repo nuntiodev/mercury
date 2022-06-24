@@ -15,6 +15,8 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 		conversation *go_mercury.Conversation
 		err          error
 	)
+	// todo: check admin user exists
+	// todo: check invited users exists
 	c, err = h.repository.ConversationsBuilder.SetNamespace(req.Namespace).Build(ctx)
 	if err != nil {
 		return nil, err
