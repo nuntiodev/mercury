@@ -77,10 +77,6 @@ github.com/nuntiodev/hera v0.0.36 h1:CkI0yBZMEr0X0XZkdeZQqZfa0i+jpj2dUmUDPPim9U8
 github.com/nuntiodev/hera v0.0.36/go.mod h1:OWZDHVib9qYrkYminY1b3JMwFKRs0YguV4Xy4ou9LIw=
 github.com/nuntiodev/hera-proto v0.2.84 h1:rCFmudpqOz7fX2WuyGMBSWNvjStKrPYmmYPsGDLbWxI=
 github.com/nuntiodev/hera-proto v0.2.84/go.mod h1:i4tVO9nn5JskVo8mR9wmmI00aNIJ4hmg9d0BYQZfFZs=
-github.com/nuntiodev/mercury-proto v0.0.3 h1:TjYsNhsOHqGip51HXW/29mqo+RDREzntQN1eyU+0YsQ=
-github.com/nuntiodev/mercury-proto v0.0.3/go.mod h1:4orYZrKGSFZgb4ppoPTf5/lqLt17yCtuOdV0cjBwczQ=
-github.com/nuntiodev/mercury-proto v0.0.4-0.20220624142907-d7460e387e9b h1:y1OZpN1tlUjWdhdQueqvtpDI1x8pCq0JS0vsJCHNmbA=
-github.com/nuntiodev/mercury-proto v0.0.4-0.20220624142907-d7460e387e9b/go.mod h1:4orYZrKGSFZgb4ppoPTf5/lqLt17yCtuOdV0cjBwczQ=
 github.com/nuntiodev/mercury-proto v0.0.4-0.20220624144223-3bd7777e2346 h1:MGTffK7pa4ikJ+b8gBcxb8punXQeIQlKDmdIgve9uFg=
 github.com/nuntiodev/mercury-proto v0.0.4-0.20220624144223-3bd7777e2346/go.mod h1:4orYZrKGSFZgb4ppoPTf5/lqLt17yCtuOdV0cjBwczQ=
 github.com/nuntiodev/x v0.2.40 h1:oWDf+lqdYMURWrvYAR6IFStm7yb3uA5VpDHguuIaYxs=

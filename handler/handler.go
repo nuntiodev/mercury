@@ -1,17 +1,9 @@
 package handler
 
 import (
-	"errors"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 	"github.com/nuntiodev/mercury/repository"
 	"go.uber.org/zap"
-)
-
-var (
-	UserIsNil           = errors.New("user is nil")
-	UserIdIsEmpty       = errors.New("conversation id is empty")
-	ConversationIsNil   = errors.New("conversation is nil")
-	ConversationIdIsNil = errors.New("conversation id is nil")
 )
 
 type defaultHandler struct {
