@@ -2,7 +2,6 @@ package handler
 
 import (
 	"context"
-	"github.com/nuntiodev/hera/models"
 	"github.com/nuntiodev/hera/repository/user_repository"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 	"google.golang.org/grpc/codes"
@@ -13,7 +12,6 @@ import (
 func (h *defaultHandler) CreateUser(ctx context.Context, req *go_mercury.MercuryRequest) (resp *go_mercury.MercuryResponse, err error) {
 	var (
 		userRepository user_repository.UserRepository
-		user          *models.User
 	)
 	if req.User == nil {
 		return nil, status.Error(codes.InvalidArgument, "missing user")
@@ -22,9 +20,9 @@ func (h *defaultHandler) CreateUser(ctx context.Context, req *go_mercury.Mercury
 	if err != nil {
 		return nil, err
 	}
-	user, err = userRepository.Create(ctx, mercuryUserToHeraUser(req.User))
+	err = userRepository.Create(ctx, mercuryUserToHeraUser(req.User))
 	if err != nil {
 		return nil, err
 	}
-	return &go_mercury.MercuryResponse{User: heraUserModelToMercuryUser(user)}, nil
+	return &go_mercury.MercuryResponse{}, nil
 }

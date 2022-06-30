@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/joho/godotenv v1.4.0
-	github.com/nuntiodev/hera v0.0.66
+	github.com/nuntiodev/hera v0.0.67
 	github.com/nuntiodev/hera-sdks v0.2.96
 	github.com/nuntiodev/mercury-proto v0.0.4-0.20220624144223-3bd7777e2346
 	github.com/nuntiodev/x v0.2.45

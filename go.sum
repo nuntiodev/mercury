@@ -77,6 +77,8 @@ github.com/mattn/go-runewidth v0.0.10/go.mod h1:RAqKPSqVFrSLVXbA8x7dzmKdmGzieGRC
 github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe/go.mod h1:wL8QJuTMNUDYhXwkmfOly8iTdp5TEcJFWZD2D7SIkUc=
 github.com/nuntiodev/hera v0.0.66 h1:+58/PTo11S4DY8zgSP4aClmoymm/NfInMoCpv4GnvQ8=
 github.com/nuntiodev/hera v0.0.66/go.mod h1:HFm2J0mS+56tBGqng+PPs8PA8DsqKVWK9pgfiWJrSZ0=
+github.com/nuntiodev/hera v0.0.67 h1:dRW6hkEH/a6b3k8QiA0Ryor+516UT7s0vEjEqJKoVJE=
+github.com/nuntiodev/hera v0.0.67/go.mod h1:HFm2J0mS+56tBGqng+PPs8PA8DsqKVWK9pgfiWJrSZ0=
 github.com/nuntiodev/hera v0.2.90 h1:iQOcjFrFWMD8peTAL/QpPLFratx1NsF9HdyxK1xDZMQ=
 github.com/nuntiodev/hera v0.2.90/go.mod h1:mFN5b5Y7bWDiJkHxHr0tWzuH9eU0zZK0aGp+E6Kq3ok=
 github.com/nuntiodev/hera-proto v0.2.84 h1:rCFmudpqOz7fX2WuyGMBSWNvjStKrPYmmYPsGDLbWxI=
