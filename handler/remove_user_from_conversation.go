@@ -3,11 +3,21 @@ package handler
 import (
 	"context"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/nuntiodev/mercury/repository/conversations"
 )
 
-func (h *defaultHandler) RemoveUserFromConversation(ctx context.Context, req *go_mercury.MercuryRequest) (*go_mercury.MercuryResponse, error) {
-	//TODO: Implement
-	return nil, status.Error(codes.Unimplemented, "unimplemented")
+// RemoveUserFromConversation removes a user from a conversation, both given by their id.
+func (h *defaultHandler) RemoveUserFromConversation(ctx context.Context, req *go_mercury.MercuryRequest) (resp *go_mercury.MercuryResponse, err error) {
+	var (
+		conversationRepository conversations.Conversations
+	)
+	conversationRepository, err = h.repository.ConversationsBuilder().SetNamespace(req.Namespace).Build(ctx)
+	if err != nil {
+		return nil, err
+	}
+	err = conversationRepository.RemoveUserFromConversation(ctx, req.Conversation, req.User)
+	if err != nil {
+		return nil, err
+	}
+	return &go_mercury.MercuryResponse{}, nil
 }

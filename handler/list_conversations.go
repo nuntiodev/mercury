@@ -11,7 +11,7 @@ func (h *defaultHandler) ListConversations(ctx context.Context, req *go_mercury.
 		conversationRepository conversations.Conversations
 		list                   []*go_mercury.Conversation
 	)
-	conversationRepository, err = h.repository.ConversationsBuilder.SetNamespace(req.Namespace).Build(ctx)
+	conversationRepository, err = h.repository.ConversationsBuilder().SetNamespace(req.Namespace).Build(ctx)
 	if err != nil {
 		return nil, err
 	}

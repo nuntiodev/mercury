@@ -6,6 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+// Get finds a conversation by id.
 func (c *mongoConversations) Get(ctx context.Context, conversation *go_mercury.Conversation) (*go_mercury.Conversation, error) {
 	if conversation == nil {
 		return nil, ConversationIsNil

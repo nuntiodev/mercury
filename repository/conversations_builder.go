@@ -28,3 +28,7 @@ func (cb *conversationsBuilder) Build(ctx context.Context) (conversations.Conver
 	collection := cb.client.Database(cb.namespace).Collection("mercury_conversations")
 	return conversations.New(ctx, collection), nil
 }
+
+func (m *mongoRepository) ConversationsBuilder() ConversationsBuilder {
+	return &conversationsBuilder{client: m.mongoClient}
+}

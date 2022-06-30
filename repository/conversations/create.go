@@ -6,9 +6,7 @@ import (
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 )
 
-/*
-	Create creates a chat room in the database.
-*/
+// Create creates a conversation.
 func (c *mongoConversations) Create(ctx context.Context, conversation *go_mercury.Conversation) (*go_mercury.Conversation, error) {
 	// validate that the conversation is valid
 	if conversation == nil {

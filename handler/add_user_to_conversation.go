@@ -6,11 +6,12 @@ import (
 	"github.com/nuntiodev/mercury/repository/conversations"
 )
 
+// AddUserToConversation adds a user to a conversation, both given by their id.
 func (h *defaultHandler) AddUserToConversation(ctx context.Context, req *go_mercury.MercuryRequest) (resp *go_mercury.MercuryResponse, err error) {
 	var (
 		conversationRepository conversations.Conversations
 	)
-	conversationRepository, err = h.repository.ConversationsBuilder.SetNamespace(req.Namespace).Build(ctx)
+	conversationRepository, err = h.repository.ConversationsBuilder().SetNamespace(req.Namespace).Build(ctx)
 	if err != nil {
 		return nil, err
 	}

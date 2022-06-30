@@ -7,6 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+// Delete deletes a conversation by id.
 func (c *mongoConversations) Delete(ctx context.Context, conversation *go_mercury.Conversation) error {
 	if conversation == nil {
 		return ConversationIsNil

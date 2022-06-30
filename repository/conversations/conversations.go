@@ -21,6 +21,7 @@ type Conversations interface {
 	List(ctx context.Context, conversation *go_mercury.User, from, to int32) ([]*go_mercury.Conversation, error)
 	Delete(ctx context.Context, conversation *go_mercury.Conversation) error
 	AddUserToConversation(ctx context.Context, conversation *go_mercury.Conversation, user *go_mercury.User) error
+	RemoveUserFromConversation(ctx context.Context, conversation *go_mercury.Conversation, user *go_mercury.User) error
 }
 
 type mongoConversations struct {

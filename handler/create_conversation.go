@@ -2,7 +2,7 @@ package handler
 
 import (
 	"context"
-	"github.com/nuntiodev/hera-proto/go_hera"
+	"github.com/nuntiodev/hera-sdks/go_hera"
 	"github.com/nuntiodev/hera/repository/user_repository"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 	"github.com/nuntiodev/mercury/repository/conversations"
@@ -10,9 +10,8 @@ import (
 	"k8s.io/utils/strings/slices"
 )
 
-/*
-	CreateConversation creates a new conversation with the same adminId as the user creating it.
-*/
+// CreateConversation creates a new conversation.
+// The admin is the user creating the conversation.
 func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury.MercuryRequest) (resp *go_mercury.MercuryResponse, err error) {
 	var (
 		conversationRepository conversations.Conversations
@@ -22,7 +21,7 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 	)
 	// check admin user exists
 	errGroup.Go(func() (err error) {
-		userRepository, err = h.repository.UserRepositoryBuilder.SetNamespace(req.Namespace).Build(ctx)
+		userRepository, err = h.repository.UserRepositoryBuilder().SetNamespace(req.Namespace).Build(ctx)
 		if err != nil {
 			return err
 		}
@@ -52,7 +51,7 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 		req.Conversation.Users = append(req.Conversation.Users, req.Conversation.AdminId)
 	}
 	// todo: make sure that each id in Conversation.Users is unique (no duplicates)
-	conversationRepository, err = h.repository.ConversationsBuilder.SetNamespace(req.Namespace).Build(ctx)
+	conversationRepository, err = h.repository.ConversationsBuilder().SetNamespace(req.Namespace).Build(ctx)
 	if err != nil {
 		return nil, err
 	}
