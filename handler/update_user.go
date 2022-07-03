@@ -1,4 +1,4 @@
-package conversations
+package handler
 
 import (
 	"context"
@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (c *mongoConversations) List(ctx context.Context, conversation *go_mercury.User, from, to int32) ([]*go_mercury.Conversation, error) {
+func (h *defaultHandler) UpdateUser(ctx context.Context, req *go_mercury.MercuryRequest) (*go_mercury.MercuryResponse, error) {
+	//TODO: Implement
 	return nil, status.Error(codes.Unimplemented, "unimplemented")
 }
