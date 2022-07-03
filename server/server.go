@@ -6,6 +6,7 @@ import (
 	"github.com/nuntiodev/mercury-proto/go_mercury"
 	"github.com/nuntiodev/mercury/handler"
 	"github.com/nuntiodev/mercury/repository"
+	"github.com/nuntiodev/x/pointerx"
 	database "github.com/nuntiodev/x/repositoryx"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -44,7 +45,7 @@ func New(ctx context.Context, logger *zap.Logger) (Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	mongoClient, err := myDatabase.CreateMongoClient(ctx)
+	mongoClient, err := myDatabase.CreateMongoClient(ctx, pointerx.IntPtr(5))
 	if err != nil {
 		return nil, err
 	}
@@ -60,11 +61,12 @@ func New(ctx context.Context, logger *zap.Logger) (Server, error) {
 	}
 	return &defaultServer{
 		handler: myHandler,
+		logger:  logger,
 	}, nil
 }
 
 func (s *defaultServer) Run() error {
-	s.logger.Info("running grpc server...")
+	s.logger.Info(fmt.Sprintf("running Mercury server on port %s...", port))
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 	if err != nil {
 		return err

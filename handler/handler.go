@@ -27,15 +27,13 @@ func heraUserModelToMercuryUser(user *models.User) *go_mercury.User {
 
 func heraUserToMercuryUser(user *go_hera.User) *go_mercury.User {
 	res := &go_mercury.User{
-		Id:        user.Id,
-		CreatedAt: user.CreatedAt,
-		UpdatedAt: user.UpdatedAt,
-	}
-	if user.Username != nil {
-		res.Name = *user.Username
-	}
-	if user.Image != nil {
-		res.Image = *user.Image
+		Id:        user.GetId(),
+		FirstName: user.GetFirstName(),
+		LastName:  user.GetLastName(),
+		Image:     user.GetImage(),
+		Email:     user.GetEmail(),
+		CreatedAt: user.GetCreatedAt(),
+		UpdatedAt: user.GetUpdatedAt(),
 	}
 	if user.Email != nil {
 		res.Email = *user.Email
@@ -45,11 +43,12 @@ func heraUserToMercuryUser(user *go_hera.User) *go_mercury.User {
 
 func mercuryUserToHeraUser(user *go_mercury.User) *go_hera.User {
 	return &go_hera.User{
-		Id:        user.Id,
-		CreatedAt: user.CreatedAt,
-		UpdatedAt: user.UpdatedAt,
-		Username:  &user.Name,
+		Id:        user.GetId(),
+		FirstName: &user.FirstName,
+		LastName:  &user.LastName,
 		Image:     &user.Image,
 		Email:     &user.Email,
+		CreatedAt: user.GetCreatedAt(),
+		UpdatedAt: user.GetUpdatedAt(),
 	}
 }
