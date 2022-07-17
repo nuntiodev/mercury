@@ -11,6 +11,7 @@ import (
 type Repository interface {
 	UserRepositoryBuilder() hera_repository.UserRepositoryBuilder
 	ConversationsBuilder() ConversationsBuilder
+	MessagesBuilder() MessagesBuilder
 }
 
 type mongoRepository struct {

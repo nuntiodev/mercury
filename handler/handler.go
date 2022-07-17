@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"errors"
 	"github.com/nuntiodev/hera-sdks/go_hera"
 	"github.com/nuntiodev/hera/models"
 	"github.com/nuntiodev/mercury-proto/go_mercury"
@@ -20,6 +21,10 @@ func New(logger *zap.Logger, repository repository.Repository) (go_mercury.Servi
 		repository: repository,
 	}, nil
 }
+
+var (
+	MessageIsNil = errors.New("message is nil")
+)
 
 func heraUserModelToMercuryUser(user *models.User) *go_mercury.User {
 	return heraUserToMercuryUser(models.UserToProtoUser(user))

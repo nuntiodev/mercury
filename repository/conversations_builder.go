@@ -16,16 +16,16 @@ type conversationsBuilder struct {
 	client    *mongo.Client
 }
 
-func (cb *conversationsBuilder) SetNamespace(namespace string) ConversationsBuilder {
-	cb.namespace = namespace
-	return cb
+func (b *conversationsBuilder) SetNamespace(namespace string) ConversationsBuilder {
+	b.namespace = namespace
+	return b
 }
 
-func (cb *conversationsBuilder) Build(ctx context.Context) (conversations.Conversations, error) {
-	if cb.namespace == "" {
-		cb.namespace = "nuntio-db"
+func (b *conversationsBuilder) Build(ctx context.Context) (conversations.Conversations, error) {
+	if b.namespace == "" {
+		b.namespace = "nuntio-db"
 	}
-	collection := cb.client.Database(cb.namespace).Collection("mercury_conversations")
+	collection := b.client.Database(b.namespace).Collection("mercury_conversations")
 	return conversations.New(ctx, collection), nil
 }
 

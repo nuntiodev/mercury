@@ -6,10 +6,9 @@ import (
 	"github.com/nuntiodev/mercury/repository/conversations"
 )
 
-func (h *defaultHandler) DeleteConversation(ctx context.Context, req *go_mercury.MercuryRequest) (*go_mercury.MercuryResponse, error) {
+func (h *defaultHandler) DeleteConversation(ctx context.Context, req *go_mercury.MercuryRequest) (resp *go_mercury.MercuryResponse, err error) {
 	var (
 		conversationRepository conversations.Conversations
-		err                    error
 	)
 	conversationRepository, err = h.repository.ConversationsBuilder().SetNamespace(req.Namespace).Build(ctx)
 	if err != nil {
