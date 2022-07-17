@@ -8,6 +8,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
+// Send creates a message in a conversation by a user, both given by their id.
 func (h *defaultHandler) Send(ctx context.Context, req *go_mercury.MercuryRequest) (resp *go_mercury.MercuryResponse, err error) {
 	var (
 		message            *go_mercury.Message

@@ -6,6 +6,7 @@ import (
 	"github.com/nuntiodev/mercury/repository/conversations"
 )
 
+// ListConversations lists conversations from req.From (inclusive) to req.To (not inclusive) of a user, given by id.
 func (h *defaultHandler) ListConversations(ctx context.Context, req *go_mercury.MercuryRequest) (resp *go_mercury.MercuryResponse, err error) {
 	var (
 		conversationRepository conversations.Conversations
