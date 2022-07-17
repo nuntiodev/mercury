@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    volumes:
+      - ~/apps/mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=password
+  mercury_one:
+    build: ./
+    ports:
+      - "9000:9000"
+    environment:
+      - MONGO_URI=mongodb://user:password@mongodb:27017/?retryWrites=true
+    volumes:
+      - ${PWD}/hera_config.json:/hera_config.json
+  mercury_two:
+    build: ./
+    ports:
+      - "9001:9001"
+    environment:
+      - MONGO_URI=mongodb://user:password@mongodb:27017/?retryWrites=true
+      - PORT=9001
+    volumes:
+      - ${PWD}/hera_config.json:/hera_config.json
