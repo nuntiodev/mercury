@@ -19,12 +19,12 @@ func (h *defaultHandler) CreateConversation(ctx context.Context, req *go_mercury
 		conversation           *go_mercury.Conversation
 		errGroup               = errgroup.Group{}
 	)
+	userRepository, err = h.repository.UserRepositoryBuilder().SetNamespace(req.Namespace).Build(ctx)
+	if err != nil {
+		return nil, err
+	}
 	// check admin user exists
 	errGroup.Go(func() (err error) {
-		userRepository, err = h.repository.UserRepositoryBuilder().SetNamespace(req.Namespace).Build(ctx)
-		if err != nil {
-			return err
-		}
 		_, err = userRepository.Get(ctx, &go_hera.User{Id: req.Conversation.AdminId})
 		if err != nil {
 			return err

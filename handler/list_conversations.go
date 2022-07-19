@@ -16,7 +16,7 @@ func (h *defaultHandler) ListConversations(ctx context.Context, req *go_mercury.
 	if err != nil {
 		return nil, err
 	}
-	list, err = conversationRepository.List(ctx, req.User, req.From, req.To)
+	list, err = conversationRepository.List(ctx, req.User, int64(req.From), int64(req.To))
 	if err != nil {
 		return nil, err
 	}

@@ -19,12 +19,16 @@ func (h *defaultHandler) Send(ctx context.Context, req *go_mercury.MercuryReques
 		return nil, MessageIsNil
 	}
 
+	id, err := uuid.NewRandom()
+	if err != nil {
+		return nil, err
+	}
 	messagesRepository, err = h.repository.MessagesBuilder().SetNamespace(req.Namespace).Build(ctx)
 	if err != nil {
 		return nil, err
 	}
 	message, err = messagesRepository.Create(ctx, &go_mercury.Message{
-		Id:             uuid.NewString(),
+		Id:             id.String(),
 		ConversationId: req.Message.ConversationId,
 		UserId:         req.Message.UserId,
 		SentAt:         timestamppb.Now(),
